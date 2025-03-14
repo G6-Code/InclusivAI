@@ -7,14 +7,14 @@ interface FormSelectorProps {
 }
 
 const AVAILABLE_FORMS = [
-  { id: "0009", name: "Positive Personal Profile Summary" },
-  { id: "0010", name: "Supported Employment Initial Placement Information Report" },
-  { id: "0011", name: "Job Coaching Progress Report - Day 30" },
-  { id: "0012", name: "Job Coaching Progress Report" },
-  { id: "0013", name: "Supported Employment Job Stabilization Progress Report" },
-  { id: "0014", name: "Supported Employment Letter of Commitment" },
-  { id: "0015", name: "Trial Work Evaluation Report (TWER)" },
-  { id: "0016", name: "Plan of Extended Services and Support" },
+  { id: "001", name: "Positive Personal Profile Summary" },
+  { id: "002", name: "Supported Employment Initial Placement Information Report" },
+  { id: "003", name: "Job Coaching Progress Report - Day 30" },
+  { id: "004", name: "Job Coaching Progress Report" },
+  { id: "005", name: "Supported Employment Job Stabilization Progress Report" },
+  { id: "006", name: "Supported Employment Letter of Commitment" },
+  { id: "007", name: "Trial Work Evaluation Report (TWER)" },
+  { id: "008", name: "Plan of Extended Services and Support" },
 ]
 
 export function FormSelector({ selectedForms, setSelectedForms }: FormSelectorProps) {
