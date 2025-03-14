@@ -242,8 +242,7 @@ export default function InclusivAI() {
 
       <footer className="mt-16 text-center text-sm text-muted-foreground border-t pt-4">
         <p>
-          This application is processed by an AI and may contain errors. Please review all information before
-          submission.
+          Hey!🤖 This application is processed by an AI and may contain errors. Please review all information before submission. 🚀
         </p>
       </footer>
 
