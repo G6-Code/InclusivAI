@@ -1,0 +1,25 @@
+name: Mirror to Azure DevOps
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  }
+
+      - name: Push to Azure DevOps
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          
+          git remote add azure "https://oauth2:${{ secrets.AZURE_DEVOPS_PAT }}@dev.azure.com/InclusivAI/gabriela0834/_git/InclusivAI"
+          
+          git push --mirror azure
