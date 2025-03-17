@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { AudioRecorder } from "@/components/audio-recorder"
 import { FormSelector } from "@/components/form-selector"
@@ -42,10 +41,10 @@ export default function InclusivAI() {
     setIsProcessing(true)
 
     try {
-      // First upload the audio file to Azure Blob Storage
+      // Subir el archivo de audio a Azure Blob Storage
       await uploadToAzureBlobStorage()
 
-      // Then send data to Azure API for transcription
+      // Enviar los datos a la API de Azure para transcripción
       const formData = new FormData()
       formData.append("coachName", coachName)
       formData.append("clientName", clientName)
@@ -53,11 +52,13 @@ export default function InclusivAI() {
       formData.append("forms", JSON.stringify(selectedForms))
       formData.append("audioFile", audioFile)
 
-      // This would be replaced with your actual Azure API endpoint
-      const response = await fetch("https://your-azure-api-endpoint.com/transcribe", {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL as string
+      const apiKey = process.env.AZURE_API_KEY as string
+
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
-          "Ocp-Apim-Subscription-Key": "your-subscription-key", // This would be an environment variable
+          "Ocp-Apim-Subscription-Key": apiKey,
         },
         body: formData,
       })
@@ -92,10 +93,13 @@ export default function InclusivAI() {
     setUploadProgress(0)
 
     try {
-      // This would be your SAS URL from Azure
-      const sasUrl = "https://your-storage-account.blob.core.windows.net/container/filename?sv=..."
+      const sasUrl = process.env.AZURE_STORAGE_SAS_URL as string
 
-      // Simulate upload progress
+      if (!sasUrl) {
+        throw new Error("Missing Azure Storage SAS URL.")
+      }
+
+      // Simulación de progreso de carga
       const uploadInterval = setInterval(() => {
         setUploadProgress((prev) => {
           const newProgress = prev + 10
@@ -107,7 +111,7 @@ export default function InclusivAI() {
         })
       }, 500)
 
-      // This would be the actual upload code
+      // Aquí iría la carga real a Azure Blob Storage
       // const response = await fetch(sasUrl, {
       //   method: "PUT",
       //   headers: {
@@ -121,7 +125,7 @@ export default function InclusivAI() {
       //   throw new Error(`Upload failed: ${response.status}`)
       // }
 
-      // Simulate successful upload after progress reaches 100%
+      // Simulación de carga exitosa
       setTimeout(() => {
         clearInterval(uploadInterval)
         setUploadProgress(100)
@@ -240,14 +244,7 @@ export default function InclusivAI() {
         </div>
       </div>
 
-      <footer className="mt-16 text-center text-sm text-muted-foreground border-t pt-4">
-        <p>
-          Hey!🤖 This application is processed by an AI and may contain errors. Please review all information before submission. 🚀
-        </p>
-      </footer>
-
       <Toaster />
     </main>
   )
 }
-
