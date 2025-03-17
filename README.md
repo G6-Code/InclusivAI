@@ -78,7 +78,7 @@ pnpm install
 ```bash
 pnpm run dev
 ```
-Acceder a la aplicación en `http://localhost:3000`
+Acceder a la aplicación en `http://localhost:8080`
 
 ### Desplegar en Vercel
 ```bash
