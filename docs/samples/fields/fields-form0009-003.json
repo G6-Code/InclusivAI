@@ -1,0 +1,155 @@
+{
+	"id": "7146ddd8-58f6-49a0-9364-36c2a92ed6ad",
+	"status": "Succeeded",
+	"result": {
+		"analyzerId": "auto-labeling-model-1742070092603-106",
+		"apiVersion": "2024-12-01-preview",
+		"createdAt": "2025-03-18T17:34:33Z",
+		"warnings": [],
+		"contents": [
+			{
+				"markdown": "```\nThe jobseeker's name is Robert Miller. Today is March 5, 2025. The career specialist working with Robert is Lisa Adams, and the reporting period is from December 2024 to March 2025. Lisa is a service provider, and she has known Robert for approximately three to five years. The interviewee speaking here is David Johnson, who is a close family friend of Robert.\r\n\r\nWhen asked about Robert’s interests, I would say that he enjoys creative pursuits like sketching and writing short stories. During his free time, Robert prefers activities such as playing the guitar and solving puzzles. He thrives best in environments that are calm and organized, with minimal distractions. Robert is incredibly talented at creative problem-solving and has a keen eye for detail. He learns new tasks most effectively by observing and practicing them step-by-step.\r\n\r\nIn terms of his work experiences, Robert has volunteered at the local library, helping organize books and assisting visitors with inquiries. At home, he regularly takes responsibility for household chores like cleaning and grocery shopping. He also participates actively in his community, often volunteering at charity events and neighborhood improvement projects.\r\n\r\nRobert has undergone vocational training in data entry and is proficient in using common office software. Academically, he is skilled in reading comprehension and managing basic math calculations, including budgeting tasks.\r\n\r\nHowever, Robert strongly dislikes high-pressure situations and environments where he is expected to multitask extensively. For his well-being, it's best to avoid jobs that require constant interaction with large crowds or tight deadlines.\r\n\r\nCurrently, Robert benefits from career counseling and a peer mentor. To support his success, accommodations such as a structured schedule and a quiet workstation would be ideal. Continued access to mentorship programs and occasional on-the-job coaching will be essential.\r\n\r\nIn terms of transportation, Robert mainly relies on a carpooling arrangement with friends. To ensure he can maintain employment, he may require assistance with public transit options or alternative transport arrangements.\r\n\r\nRobert’s temperament is warm, approachable, and highly dependable. His most admirable traits include his ability to focus, his reliability, and his strong sense of empathy. Robert’s dream job would be working as a data analyst for a non-profit organization. He has a habit of starting his day with a cup of tea while reviewing his to-do list, which helps him prepare for the day ahead.\r\n\r\nTo gather this information, we conducted one-on-one interviews with Robert, observed him during his vocational training sessions, and reviewed his background records. Additionally, input from Robert’s mentor and family members was gathered to provide a comprehensive understanding of his skills and preferences.\r\n\n```",
+				"fields": {
+					"Sentiment": {
+						"type": "string",
+						"valueString": "Positive"
+					},
+					"Summary": {
+						"type": "string",
+						"valueString": "The jobseeker, Robert Miller, is supported by career specialist Lisa Adams, who has known him for three to five years. Robert enjoys creative activities like sketching and writing, and prefers calm environments. He has volunteered at a library and is skilled in data entry. He dislikes high-pressure situations and benefits from career counseling and mentorship. His dream job is to be a data analyst for a non-profit. Information was gathered through interviews, observations, and input from his mentor and family."
+					},
+					"academic_skills": {
+						"type": "string",
+						"valueString": "Skilled in reading comprehension and managing basic math calculations, including budgeting tasks."
+					},
+					"additional_information": {
+						"type": "string"
+					},
+					"admired_characteristics": {
+						"type": "string",
+						"valueString": "Ability to focus, reliability, and strong sense of empathy."
+					},
+					"career_specialist": {
+						"type": "string",
+						"valueString": "Lisa Adams"
+					},
+					"community_activities": {
+						"type": "string",
+						"valueString": "Volunteering at charity events and neighborhood improvement projects."
+					},
+					"current_services": {
+						"type": "string",
+						"valueString": "Career counseling and a peer mentor."
+					},
+					"dislikes": {
+						"type": "string",
+						"valueString": "High-pressure situations and environments requiring extensive multitasking."
+					},
+					"dream_job": {
+						"type": "string",
+						"valueString": "Working as a data analyst for a non-profit organization."
+					},
+					"environmental_conditions": {
+						"type": "string",
+						"valueString": "Calm and organized environments with minimal distractions."
+					},
+					"form_date": {
+						"type": "string",
+						"valueString": "2025-03-05"
+					},
+					"habits_routines": {
+						"type": "string",
+						"valueString": "Starts the day with a cup of tea while reviewing his to-do list."
+					},
+					"household_chores": {
+						"type": "string",
+						"valueString": "Cleaning and grocery shopping."
+					},
+					"information_collected": {
+						"type": "string",
+						"valueString": "one_on_one"
+					},
+					"interests_activities": {
+						"type": "string",
+						"valueString": "Creative pursuits like sketching and writing short stories."
+					},
+					"interviewee_duration": {
+						"type": "string",
+						"valueString": "three_to_five"
+					},
+					"interviewee_name": {
+						"type": "string",
+						"valueString": "David Johnson"
+					},
+					"jobseeker_name": {
+						"type": "string",
+						"valueString": "Robert Miller"
+					},
+					"learning_methods": {
+						"type": "string",
+						"valueString": "Observing and practicing tasks step-by-step."
+					},
+					"leisure_activities": {
+						"type": "string",
+						"valueString": "Playing the guitar and solving puzzles."
+					},
+					"met_benefits_specialist": {
+						"type": "string",
+						"valueString": "no"
+					},
+					"necessary_accommodations": {
+						"type": "string",
+						"valueString": "Structured schedule and a quiet workstation."
+					},
+					"position_title": {
+						"type": "string"
+					},
+					"relationship_jobseeker": {
+						"type": "string",
+						"valueString": "service_provider"
+					},
+					"reporting_period": {
+						"type": "string",
+						"valueString": "December 2024 to March 2025"
+					},
+					"situations_to_avoid": {
+						"type": "string",
+						"valueString": "Jobs requiring constant interaction with large crowds or tight deadlines."
+					},
+					"support_needs": {
+						"type": "string",
+						"valueString": "Continued access to mentorship programs and occasional on-the-job coaching."
+					},
+					"talents": {
+						"type": "string",
+						"valueString": "Creative problem-solving and keen eye for detail."
+					},
+					"temperament": {
+						"type": "string",
+						"valueString": "Warm, approachable, and highly dependable."
+					},
+					"transportation_methods": {
+						"type": "string",
+						"valueString": "Carpooling arrangement with friends."
+					},
+					"transportation_resources": {
+						"type": "string",
+						"valueString": "Assistance with public transit options or alternative transport arrangements."
+					},
+					"vocational_training": {
+						"type": "string",
+						"valueString": "Vocational training in data entry."
+					},
+					"work_experiences": {
+						"type": "string",
+						"valueString": "Volunteered at the local library, helping organize books and assisting visitors with inquiries."
+					}
+				},
+				"kind": "document",
+				"startPageNumber": 1,
+				"endPageNumber": 1,
+				"pages": []
+			}
+		]
+	}
+}
