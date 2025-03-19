@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useRef, useEffect } from "react"
 import { Mic, Upload, Play, Square, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -25,18 +24,38 @@ export function AudioRecorder({ audioFile, setAudioFile, isRecording, setIsRecor
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    return () => {
-      if (audioUrl) {
-        URL.revokeObjectURL(audioUrl)
-      }
+    // Verifica si el navegador soporta getUserMedia
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      toast({
+        title: "Microphone not supported",
+        description: "Your browser does not support microphone access.",
+        variant: "destructive",
+      })
     }
-  }, [audioUrl])
+  }, [])
+
+  const requestMicrophonePermission = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      console.log("Microphone access granted", stream)
+      return stream
+    } catch (error) {
+      console.error("Microphone access denied", error)
+      toast({
+        title: "Microphone access denied",
+        description: "Please allow microphone access in your browser settings.",
+        variant: "destructive",
+      })
+      return null
+    }
+  }
 
   const startRecording = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-      const recorder = new MediaRecorder(stream)
+      const stream = await requestMicrophonePermission()
+      if (!stream) return
 
+      const recorder = new MediaRecorder(stream)
       setAudioChunks([])
       setMediaRecorder(recorder)
 
@@ -51,9 +70,12 @@ export function AudioRecorder({ audioFile, setAudioFile, isRecording, setIsRecor
         const url = URL.createObjectURL(audioBlob)
         setAudioUrl(url)
 
-        // Create a File object from the Blob
+        // Crear un archivo a partir del Blob
         const file = new File([audioBlob], "recording.wav", { type: "audio/wav" })
         setAudioFile(file)
+
+        // Subir a Azure Blob Storage
+        uploadToAzureBlobStorage(file)
       }
 
       recorder.start()
@@ -65,11 +87,6 @@ export function AudioRecorder({ audioFile, setAudioFile, isRecording, setIsRecor
       })
     } catch (error) {
       console.error("Error accessing microphone:", error)
-      toast({
-        title: "Microphone access denied",
-        description: "Please allow microphone access to record audio.",
-        variant: "destructive",
-      })
     }
   }
 
@@ -78,12 +95,47 @@ export function AudioRecorder({ audioFile, setAudioFile, isRecording, setIsRecor
       mediaRecorder.stop()
       setIsRecording(false)
 
-      // Stop all audio tracks
+      // Detener todas las pistas de audio
       mediaRecorder.stream.getTracks().forEach((track) => track.stop())
 
       toast({
         title: "Recording stopped",
-        description: "Your audio has been captured.",
+        description: "Your audio has been captured and is being uploaded.",
+      })
+    }
+  }
+
+  const uploadToAzureBlobStorage = async (file: File) => {
+    try {
+      const sasUrl = process.env.NEXT_PUBLIC_AZURE_BLOB_SAS_URL as string
+
+      if (!sasUrl) {
+        throw new Error("Azure Storage SAS URL is missing.")
+      }
+
+      const response = await fetch(sasUrl, {
+        method: "PUT",
+        headers: {
+          "x-ms-blob-type": "BlockBlob",
+          "Content-Type": file.type,
+        },
+        body: file,
+      })
+
+      if (!response.ok) {
+        throw new Error(`Upload failed: ${response.status}`)
+      }
+
+      toast({
+        title: "Upload complete",
+        description: "Your audio has been uploaded to Azure Blob Storage.",
+      })
+    } catch (error) {
+      console.error("Error uploading to Azure Blob Storage:", error)
+      toast({
+        title: "Upload failed",
+        description: error instanceof Error ? error.message : "An unknown error occurred",
+        variant: "destructive",
       })
     }
   }
@@ -111,6 +163,9 @@ export function AudioRecorder({ audioFile, setAudioFile, isRecording, setIsRecor
       title: "File uploaded",
       description: `${file.name} has been uploaded.`,
     })
+
+    // Subir archivo a Azure
+    uploadToAzureBlobStorage(file)
   }
 
   const playAudio = () => {
@@ -219,4 +274,3 @@ export function AudioRecorder({ audioFile, setAudioFile, isRecording, setIsRecor
     </div>
   )
 }
-
