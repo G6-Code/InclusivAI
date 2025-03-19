@@ -15,7 +15,6 @@ import { useToast } from "@/hooks/use-toast"
 
 export default function InclusivAI() {
   const { toast } = useToast()
-  // Eliminamos const [coachName, setCoachName] = useState("")
   const [clientName, setClientName] = useState("")
   const [notes, setNotes] = useState("")
   const [selectedForms, setSelectedForms] = useState<string[]>([])
@@ -29,7 +28,7 @@ export default function InclusivAI() {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Quitamos la validación de coachName
+  
     if (!clientName || selectedForms.length === 0 || !audioFile) {
       toast({
         title: "Missing information",
@@ -161,7 +160,7 @@ export default function InclusivAI() {
 
   return (
     <main className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-center mb-8 text-primary">InclusivAI</h1>
+      <h1 className="text-2xl font-bold text-center mb-8 text-primary">InclusivAI</h1>
       <p className="text-center mb-8 text-muted-foreground">Supported Employment Job Coaches Solution</p>
 
       <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
