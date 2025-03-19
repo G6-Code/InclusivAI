@@ -15,7 +15,7 @@ import { useToast } from "@/hooks/use-toast"
 
 export default function InclusivAI() {
   const { toast } = useToast()
-  const [coachName, setCoachName] = useState("")
+  // Eliminamos const [coachName, setCoachName] = useState("")
   const [clientName, setClientName] = useState("")
   const [notes, setNotes] = useState("")
   const [selectedForms, setSelectedForms] = useState<string[]>([])
@@ -29,7 +29,8 @@ export default function InclusivAI() {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!coachName || !clientName || selectedForms.length === 0 || !audioFile) {
+    // Quitamos la validación de coachName
+    if (!clientName || selectedForms.length === 0 || !audioFile) {
       toast({
         title: "Missing information",
         description: "Please fill in all required fields and upload or record audio.",
@@ -46,7 +47,7 @@ export default function InclusivAI() {
 
       // Enviar los datos a la API de Azure para transcripción
       const formData = new FormData()
-      formData.append("coachName", coachName)
+      // Quitamos formData.append("coachName", coachName)
       formData.append("clientName", clientName)
       formData.append("notes", notes)
       formData.append("forms", JSON.stringify(selectedForms))
@@ -149,7 +150,7 @@ export default function InclusivAI() {
   }
 
   const handleReset = () => {
-    setCoachName("")
+    // Quitamos setCoachName("")
     setClientName("")
     setNotes("")
     setSelectedForms([])
@@ -167,21 +168,7 @@ export default function InclusivAI() {
         <div className="space-y-6 bg-card p-6 rounded-lg shadow-sm">
           <form onSubmit={handleFormSubmit} className="space-y-6">
             <div className="space-y-4">
-              <h2 className="text-xl font-semibold border-b pb-2">Coach and Client Information</h2>
-
-              <div className="space-y-2">
-                <Label htmlFor="coachName" className="text-base">
-                  Job Coach Name <span className="text-destructive">*</span>
-                </Label>
-                <Input
-                  id="coachName"
-                  value={coachName}
-                  onChange={(e) => setCoachName(e.target.value)}
-                  placeholder="Enter your full name"
-                  required
-                  aria-required="true"
-                />
-              </div>
+              <h2 className="text-xl font-semibold border-b pb-2">Client Information</h2>
 
               <div className="space-y-2">
                 <Label htmlFor="clientName" className="text-base">
