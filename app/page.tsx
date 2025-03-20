@@ -19,125 +19,60 @@ export default function InclusivAI() {
   const [notes, setNotes] = useState("")
   const [selectedForms, setSelectedForms] = useState<string[]>([])
   const [audioFile, setAudioFile] = useState<File | null>(null)
-  const [isRecording, setIsRecording] = useState(false)
+  const [documentFile, setDocumentFile] = useState<File | null>(null) // Nuevo estado para documentos
   const [isProcessing, setIsProcessing] = useState(false)
   const [transcription, setTranscription] = useState("")
   const [uploadProgress, setUploadProgress] = useState(0)
   const [isUploading, setIsUploading] = useState(false)
 
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleDocumentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setDocumentFile(e.target.files[0])
+    }
+  }
 
-  
-    if (!clientName || selectedForms.length === 0 || !audioFile) {
+  const uploadDocumentToAzureBlobStorage = async () => {
+    if (!documentFile) {
       toast({
-        title: "Missing information",
-        description: "Please fill in all required fields and upload or record audio.",
+        title: "No document selected",
+        description: "Please select a document to upload.",
         variant: "destructive",
       })
       return
     }
 
-    setIsProcessing(true)
-
-    try {
-      // Subir el archivo de audio a Azure Blob Storage
-      await uploadToAzureBlobStorage()
-
-      // Enviar los datos a la API de Azure para transcripción
-      const formData = new FormData()
-      // Quitamos formData.append("coachName", coachName)
-      formData.append("clientName", clientName)
-      formData.append("notes", notes)
-      formData.append("forms", JSON.stringify(selectedForms))
-      formData.append("audioFile", audioFile)
-
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL as string
-      const apiKey = process.env.AZURE_API_KEY as string
-
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Ocp-Apim-Subscription-Key": apiKey,
-        },
-        body: formData,
-      })
-
-      if (!response.ok) {
-        throw new Error(`API error: ${response.status}`)
-      }
-
-      const data = await response.json()
-      setTranscription(data.transcription)
-
-      toast({
-        title: "Success!",
-        description: "Audio has been processed and transcribed successfully.",
-      })
-    } catch (error) {
-      console.error("Error processing audio:", error)
-      toast({
-        title: "Error processing audio",
-        description: error instanceof Error ? error.message : "An unknown error occurred",
-        variant: "destructive",
-      })
-    } finally {
-      setIsProcessing(false)
-    }
-  }
-
-  const uploadToAzureBlobStorage = async () => {
-    if (!audioFile) return
-
     setIsUploading(true)
     setUploadProgress(0)
 
     try {
-      const sasUrl = process.env.AZURE_STORAGE_SAS_URL as string
+      const sasUrl = process.env.NEXT_PUBLIC_DOCUMENT_SAS_URL as string
 
       if (!sasUrl) {
-        throw new Error("Missing Azure Storage SAS URL.")
+        throw new Error("Missing Azure Storage SAS URL for documents.")
       }
 
-      // Simulación de progreso de carga
-      const uploadInterval = setInterval(() => {
-        setUploadProgress((prev) => {
-          const newProgress = prev + 10
-          if (newProgress >= 100) {
-            clearInterval(uploadInterval)
-            return 100
-          }
-          return newProgress
-        })
-      }, 500)
+      const response = await fetch(sasUrl, {
+        method: "PUT",
+        headers: {
+          "x-ms-blob-type": "BlockBlob",
+          "Content-Type": documentFile.type,
+        },
+        body: documentFile,
+      })
 
-      // Aquí iría la carga real a Azure Blob Storage
-      // const response = await fetch(sasUrl, {
-      //   method: "PUT",
-      //   headers: {
-      //     "x-ms-blob-type": "BlockBlob",
-      //     "Content-Type": audioFile.type,
-      //   },
-      //   body: audioFile,
-      // })
+      if (!response.ok) {
+        throw new Error(`Upload failed: ${response.status}`)
+      }
 
-      // if (!response.ok) {
-      //   throw new Error(`Upload failed: ${response.status}`)
-      // }
+      setUploadProgress(100)
+      setIsUploading(false)
 
-      // Simulación de carga exitosa
-      setTimeout(() => {
-        clearInterval(uploadInterval)
-        setUploadProgress(100)
-        setIsUploading(false)
-
-        toast({
-          title: "Upload complete",
-          description: "Audio file has been uploaded to Azure Blob Storage.",
-        })
-      }, 5000)
+      toast({
+        title: "Upload complete",
+        description: "Document has been uploaded to Azure Blob Storage.",
+      })
     } catch (error) {
-      console.error("Error uploading to Azure Blob Storage:", error)
+      console.error("Error uploading document:", error)
       setIsUploading(false)
 
       toast({
@@ -148,16 +83,6 @@ export default function InclusivAI() {
     }
   }
 
-  const handleReset = () => {
-    // Quitamos setCoachName("")
-    setClientName("")
-    setNotes("")
-    setSelectedForms([])
-    setAudioFile(null)
-    setTranscription("")
-    setUploadProgress(0)
-  }
-
   return (
     <main className="container mx-auto px-4 py-8 max-w-4xl">
       <h1 className="text-2xl font-bold text-center mb-8 text-primary">InclusivAI</h1>
@@ -165,7 +90,7 @@ export default function InclusivAI() {
 
       <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
         <div className="space-y-6 bg-card p-6 rounded-lg shadow-sm">
-          <form onSubmit={handleFormSubmit} className="space-y-6">
+          <form className="space-y-6">
             <div className="space-y-4">
               <h2 className="text-xl font-semibold border-b pb-2">Client Information</h2>
 
@@ -186,6 +111,29 @@ export default function InclusivAI() {
 
             <FormSelector selectedForms={selectedForms} setSelectedForms={setSelectedForms} />
 
+            {/* 🔹 Nuevo campo para subir documentos */}
+            <div className="space-y-2">
+              <Label htmlFor="documentUpload" className="text-base">
+                Upload Document
+              </Label>
+              <Input
+                id="documentUpload"
+                type="file"
+                accept=".pdf,.doc,.docx"
+                onChange={handleDocumentChange}
+              />
+              {documentFile && <p className="text-sm text-muted-foreground">Selected file: {documentFile.name}</p>}
+              <Button
+                type="button"
+                className="mt-2"
+                onClick={uploadDocumentToAzureBlobStorage}
+                disabled={isUploading}
+              >
+                {isUploading ? "Uploading..." : "Upload Document"}
+              </Button>
+            </div>
+            {/* 🔹 Fin de nuevo campo */}
+
             <div className="space-y-2">
               <Label htmlFor="notes" className="text-base">
                 Additional Notes
@@ -202,30 +150,14 @@ export default function InclusivAI() {
             <AudioRecorder
               audioFile={audioFile}
               setAudioFile={setAudioFile}
-              isRecording={isRecording}
-              setIsRecording={setIsRecording}
+              isRecording={isProcessing}
+              setIsRecording={setIsProcessing}
             />
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button type="submit" className="flex-1" disabled={isProcessing || isUploading}>
-                {isProcessing ? "Processing..." : "Process Audio"}
-              </Button>
-              <Button
-                type="button"
-                variant="outline"
-                className="flex-1"
-                onClick={handleReset}
-                disabled={isProcessing || isUploading}
-              >
-                Reset Form
-              </Button>
-            </div>
           </form>
         </div>
 
         <div className="space-y-6">
           {(isUploading || uploadProgress > 0) && <UploadProgress progress={uploadProgress} />}
-
           <TranscriptionDisplay transcription={transcription} />
         </div>
       </div>
