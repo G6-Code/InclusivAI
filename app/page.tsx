@@ -1,92 +1,36 @@
 "use client"
 
-import type React from "react"
 import { useState } from "react"
-import { AudioRecorder } from "@/components/audio-recorder"
 import { FormSelector } from "@/components/form-selector"
 import { TranscriptionDisplay } from "@/components/transcription-display"
 import { UploadProgress } from "@/components/upload-progress"
-import { Button } from "@/components/ui/button"
+import { UploadAudio } from "@/components/upload-audio"
+import { UploadDocument } from "@/components/upload-document" 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Toaster } from "@/components/ui/toaster"
 import { useToast } from "@/hooks/use-toast"
+import { useUpload } from "@/hooks/useUpload"
+import { useTranscription } from "@/hooks/useTranscription"
 
 export default function InclusivAI() {
   const { toast } = useToast()
+  const { uploadFileToBlob, uploadProgress, isUploading } = useUpload()
+  const { transcription, fetchTranscription } = useTranscription()
+
   const [clientName, setClientName] = useState("")
   const [notes, setNotes] = useState("")
   const [selectedForms, setSelectedForms] = useState<string[]>([])
   const [audioFile, setAudioFile] = useState<File | null>(null)
-  const [documentFile, setDocumentFile] = useState<File | null>(null) // Nuevo estado para documentos
-  const [isProcessing, setIsProcessing] = useState(false)
-  const [transcription, setTranscription] = useState("")
-  const [uploadProgress, setUploadProgress] = useState(0)
-  const [isUploading, setIsUploading] = useState(false)
-
-  const handleDocumentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setDocumentFile(e.target.files[0])
-    }
-  }
-
-  const uploadDocumentToAzureBlobStorage = async () => {
-    if (!documentFile) {
-      toast({
-        title: "No document selected",
-        description: "Please select a document to upload.",
-        variant: "destructive",
-      })
-      return
-    }
-
-    setIsUploading(true)
-    setUploadProgress(0)
-
-    try {
-      const sasUrl = process.env.NEXT_PUBLIC_DOCUMENT_SAS_URL as string
-
-      if (!sasUrl) {
-        throw new Error("Missing Azure Storage SAS URL for documents.")
-      }
-
-      const response = await fetch(sasUrl, {
-        method: "PUT",
-        headers: {
-          "x-ms-blob-type": "BlockBlob",
-          "Content-Type": documentFile.type,
-        },
-        body: documentFile,
-      })
-
-      if (!response.ok) {
-        throw new Error(`Upload failed: ${response.status}`)
-      }
-
-      setUploadProgress(100)
-      setIsUploading(false)
-
-      toast({
-        title: "Upload complete",
-        description: "Document has been uploaded to Azure Blob Storage.",
-      })
-    } catch (error) {
-      console.error("Error uploading document:", error)
-      setIsUploading(false)
-
-      toast({
-        title: "Upload failed",
-        description: error instanceof Error ? error.message : "An unknown error occurred",
-        variant: "destructive",
-      })
-    }
-  }
+  const [documentFile, setDocumentFile] = useState<File | null>(null)
 
   return (
     <main className="container mx-auto px-4 py-8 max-w-4xl">
       <h1 className="text-2xl font-bold text-center mb-8 text-primary">InclusivAI</h1>
-      <p className="text-center mb-8 text-muted-foreground">Supported Employment Job Coaches Solution</p>
+      <p className="text-center mb-8 text-muted-foreground">
+        Supported Employment Job Coaches Solution
+      </p>
 
       <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
         <div className="space-y-6 bg-card p-6 rounded-lg shadow-sm">
@@ -111,33 +55,18 @@ export default function InclusivAI() {
 
             <FormSelector selectedForms={selectedForms} setSelectedForms={setSelectedForms} />
 
-            {/* 🔹 Nuevo campo para subir documentos */}
-            <div className="space-y-2">
-              <Label htmlFor="documentUpload" className="text-base">
-                Upload Document
-              </Label>
-              <Input
-                id="documentUpload"
-                type="file"
-                accept=".pdf,.doc,.docx"
-                onChange={handleDocumentChange}
-              />
-              {documentFile && <p className="text-sm text-muted-foreground">Selected file: {documentFile.name}</p>}
-              <Button
-                type="button"
-                className="mt-2"
-                onClick={uploadDocumentToAzureBlobStorage}
-                disabled={isUploading}
-              >
-                {isUploading ? "Uploading..." : "Upload Document"}
-              </Button>
-            </div>
-            {/* 🔹 Fin de nuevo campo */}
+            {/* 🔹 Sección de carga de documentos */}
+            <UploadDocument documentFile={documentFile} setDocumentFile={setDocumentFile} />
+
+            {/* 🔹 Sección de carga de audio */}
+            <UploadAudio
+              audioFile={audioFile}
+              setAudioFile={setAudioFile}
+              onUploadComplete={fetchTranscription} 
+            />
 
             <div className="space-y-2">
-              <Label htmlFor="notes" className="text-base">
-                Additional Notes
-              </Label>
+              <Label htmlFor="notes" className="text-base">Additional Notes</Label>
               <Textarea
                 id="notes"
                 value={notes}
@@ -146,18 +75,11 @@ export default function InclusivAI() {
                 className="min-h-[100px]"
               />
             </div>
-
-            <AudioRecorder
-              audioFile={audioFile}
-              setAudioFile={setAudioFile}
-              isRecording={isProcessing}
-              setIsRecording={setIsProcessing}
-            />
           </form>
         </div>
 
         <div className="space-y-6">
-          {(isUploading || uploadProgress > 0) && <UploadProgress progress={uploadProgress} />}
+          <UploadProgress progress={uploadProgress} />
           <TranscriptionDisplay transcription={transcription} />
         </div>
       </div>
