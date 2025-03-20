@@ -1,0 +1,221 @@
+{
+	"id": "2a79ea05-9de7-4aa2-b7ac-1dccc24b1702",
+	"status": "Succeeded",
+	"result": {
+		"analyzerId": "auto-labeling-model-1742277076706-440",
+		"apiVersion": "2024-12-01-preview",
+		"createdAt": "2025-03-20T04:13:50Z",
+		"warnings": [],
+		"contents": [
+			{
+				"markdown": "```\nLiam Parker recently joined Vertex Solutions as an administrative assistant at 320 P Street NW, Washington, D.C., 20007. He started on January 10, 2025, and works a full-time schedule of 40 hours per week, Monday through Friday. His hourly wage is $23.75. His employment authorization number is 76543-DC.\r\n\r\nLiam lives in Alexandria, Virginia, and commutes to work using the Washington Metro, as he does not own a car and his office does not provide private parking. His working hours are from 8:00 a.m. to 4:00 p.m., and he is not required to work nights or weekends.\r\n\r\nHis benefits package includes paid sick leave, medical and dental insurance, as well as employee discounts at fitness centers and partnered retailers. Additionally, Vertex Solutions provides complimentary lunches in the office cafeteria, which helps employees reduce their daily expenses.\r\n\r\nLiam works in a modern, open-plan office where he collaborates with colleagues and interacts with clients. His workload is typically moderate, though it can become more fast-paced during project deadlines. His supervisor, Rachel Adams, evaluated his performance after the first month and noted his reliability and strong attention to detail. However, she advised him to enhance his ability to handle unexpected task changes and improve his efficiency in task prioritization.\r\n\r\nTo support his professional development, Liam will participate in training programs focused on workflow optimization and organizational skills. With the help of his teammates, he is eager to refine his skills and advance within Vertex Solutions.\r\n\r\nHis employment is facilitated by CareerBoost Employment Services, which serves as his provider. His performance is reviewed every six months as part of the reporting period. He also receives professional guidance from his vocational rehabilitation (VR) specialist, David Carter, who supports his career growth and skill development.\n```",
+				"fields": {
+					"Sentiment": {
+						"type": "string",
+						"valueString": "Positive"
+					},
+					"Summary": {
+						"type": "string",
+						"valueString": "Liam Parker recently joined Vertex Solutions as an administrative assistant, working full-time at 320 P Street NW, Washington, D.C. He started on January 10, 2025, with an hourly wage of $23.75. Liam commutes from Alexandria, Virginia, using public transportation. His benefits include paid sick leave, medical and dental insurance, and employee discounts. He works in a collaborative, open-plan office and is supported by CareerBoost Employment Services and his VR specialist, David Carter. His supervisor noted his reliability but advised improving task prioritization. Liam is eager to advance within the company through training programs."
+					},
+					"accessibility": {
+						"type": "string",
+						"valueString": "fully_accessible_site"
+					},
+					"address": {
+						"type": "string",
+						"valueString": "320 P Street NW, Washington, D.C., 20007"
+					},
+					"appropriate_responses": {
+						"type": "string",
+						"valueString": "required_frequently"
+					},
+					"authorization_number": {
+						"type": "string",
+						"valueString": "76543-DC"
+					},
+					"career_advancement_opportunity": {
+						"type": "string",
+						"valueString": "most_probable"
+					},
+					"city_state": {
+						"type": "string",
+						"valueString": "Washington, D.C."
+					},
+					"communication_requirements": {
+						"type": "string",
+						"valueString": "clear_speech_required"
+					},
+					"coworker_support": {
+						"type": "string",
+						"valueString": "high"
+					},
+					"days_per_week": {
+						"type": "string",
+						"valueString": "5"
+					},
+					"dental_benefits": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"employee_discounts": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"employer_name": {
+						"type": "string",
+						"valueString": "Vertex Solutions"
+					},
+					"employment_type": {
+						"type": "string",
+						"valueString": "full_time"
+					},
+					"evening_work_required": {
+						"type": "string",
+						"valueString": "no"
+					},
+					"free_or_reduced_meals": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"functional_reading": {
+						"type": "string",
+						"valueString": "fluent_reading"
+					},
+					"grooming_and_cleanliness": {
+						"type": "string",
+						"valueString": "neat_and_clean_required"
+					},
+					"hourly_rate": {
+						"type": "string",
+						"valueString": "$23.75"
+					},
+					"hours_per_week": {
+						"type": "string",
+						"valueString": "40"
+					},
+					"job_accommodations": {
+						"type": "string",
+						"valueString": "very_supportive"
+					},
+					"job_coaching_frequency": {
+						"type": "string",
+						"valueString": "other"
+					},
+					"job_title": {
+						"type": "string",
+						"valueString": "Administrative Assistant"
+					},
+					"level_of_social_contact": {
+						"type": "string",
+						"valueString": "high_contact"
+					},
+					"math_skills": {
+						"type": "string",
+						"valueString": "simple_addition_subtraction"
+					},
+					"medical_health_benefits": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"object_discrimination": {
+						"type": "string",
+						"valueString": "self_identifies"
+					},
+					"paid_leave": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"person_name": {
+						"type": "string",
+						"valueString": "Liam Parker"
+					},
+					"physical_workload": {
+						"type": "string",
+						"valueString": "light_work"
+					},
+					"private_transportation": {
+						"type": "string",
+						"valueString": "no"
+					},
+					"prompting_and_supervision": {
+						"type": "string",
+						"valueString": "intermittent_low_supervision"
+					},
+					"provider": {
+						"type": "string",
+						"valueString": "CareerBoost Employment Services"
+					},
+					"public_transportation": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"reinforcement_available": {
+						"type": "string",
+						"valueString": "frequent_reinforcement"
+					},
+					"reporting_period": {
+						"type": "string",
+						"valueString": "every six months"
+					},
+					"sick_leave": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"start_date": {
+						"type": "string",
+						"valueString": "January 10, 2025"
+					},
+					"task_changes": {
+						"type": "string",
+						"valueString": "task_changes_2_3"
+					},
+					"task_requirements": {
+						"type": "string",
+						"valueString": "tasks_in_sequence_4_6"
+					},
+					"time_awareness": {
+						"type": "string",
+						"valueString": "must_tell_time_to_hour"
+					},
+					"visibility_to_public": {
+						"type": "string",
+						"valueString": "regularly_visible"
+					},
+					"vr_specialist_name": {
+						"type": "string",
+						"valueString": "David Carter"
+					},
+					"weekend_work_required": {
+						"type": "string",
+						"valueString": "no"
+					},
+					"work_area": {
+						"type": "string",
+						"valueString": "building_wide"
+					},
+					"work_duration": {
+						"type": "string",
+						"valueString": "more_than_4_hours"
+					},
+					"work_motivation": {
+						"type": "string",
+						"valueString": "volunteering_helpful"
+					},
+					"work_pace": {
+						"type": "string",
+						"valueString": "sometimes_fast_pace"
+					},
+					"zip_code": {
+						"type": "string",
+						"valueString": "20007"
+					}
+				},
+				"kind": "document",
+				"startPageNumber": 1,
+				"endPageNumber": 1,
+				"pages": []
+			}
+		]
+	}
+}
