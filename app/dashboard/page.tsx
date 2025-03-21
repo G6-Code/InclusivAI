@@ -36,7 +36,7 @@ export default function Dashboard() {
   }, [])
 
   return (
-    <main className="container mx-auto px-4 py-8 max-w-4xl">
+    <main className="container mx-auto px-4 py-8 max-w-5xl">
   
       {/* 🔹 Barra superior con botones */}
       <div className="flex justify-end items-center mb-6 space-x-3">
@@ -52,9 +52,17 @@ export default function Dashboard() {
         {/* 🔹 Botón a sugerencias de empleo */}
         <Link 
           href="/job-suggestions"
-          className="bg-white text-blue-600 border border-blue-600 px-3 py-1 text-xs rounded hover:bg-blue-100 transition"
+          className="bg-white text-green-600 border border-green-600 px-3 py-1 text-xs rounded hover:bg-green-100 transition"
         >
           Job Suggestions
+        </Link>
+
+        {/* 🔹 Botón a lista de trabajadores */}
+        <Link 
+          href="/workers"
+          className="bg-white text-green-600 border border-green-600 px-3 py-1 text-xs rounded hover:bg-green-100 transition"
+        >
+          Workers
         </Link>
 
         {/* 🔹 Botón a políticas de IA */}
@@ -79,10 +87,13 @@ export default function Dashboard() {
 
       <h1 className="text-2xl font-bold text-center mb-8 text-primary">InclusivAI - Dashboard</h1>
       <p className="text-center mb-8 text-muted-foreground">
-        Supported Employment Job Coaches Solution
+        Supported Employment Job Coaches AI Solution
       </p>
 
+      {/* 🏗️ Sección principal */}
       <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
+        
+        {/* 🔹 Formulario principal */}
         <div className="space-y-6 bg-card p-6 rounded-lg shadow-sm">
           <form className="space-y-6">
             <div className="space-y-4">
@@ -106,7 +117,7 @@ export default function Dashboard() {
 
             <UploadDocument documentFile={documentFile} setDocumentFile={setDocumentFile} />
 
-            {/*Sección de audio */}
+            {/* 🔊 Sección de audio */}
             <div className="space-y-4">
               <h2 className="text-xl font-semibold border-b pb-2">Audio Upload & Recording</h2>
               <AudioRecorder setAudioFile={setAudioFile} />
@@ -123,11 +134,16 @@ export default function Dashboard() {
           </form>
         </div>
 
-        
+        {/* 📄 Sección de transcripción y progreso */}
         <div className="space-y-6">
           <UploadProgress progress={uploadProgress} />
           <TranscriptionDisplay transcription={transcription} />
         </div>
+      </div>
+
+      {/* ⚠️ Mensaje de advertencia sobre IA */}
+      <div className="text-center mt-8 text-sm text-gray-600 px-6 py-3 bg-gray-100 border rounded-md">
+        <strong>⚠️ Please note:</strong> This is an AI-powered solution and may contain errors. Kindly review the information and ensure its accuracy.
       </div>
 
       <Toaster />
