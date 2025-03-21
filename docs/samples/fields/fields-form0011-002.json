@@ -1,0 +1,221 @@
+{
+	"id": "3d4756ed-9263-4b73-8da8-3f6615ce3d9e",
+	"status": "Succeeded",
+	"result": {
+		"analyzerId": "auto-labeling-model-1742277076706-440",
+		"apiVersion": "2024-12-01-preview",
+		"createdAt": "2025-03-20T04:15:51Z",
+		"warnings": [],
+		"contents": [
+			{
+				"markdown": "```\nJames Carter recently joined DataTech Solutions as an administrative assistant at 500 L Street NW, Washington, D.C., 20005. He began his new role on March 1, 2025, working full-time with a 40-hour schedule from Monday to Friday. His hourly wage is $25.50. His authorization number for employment is 87456-DC.\r\n\r\nLiving in Arlington, Virginia, James relies on the Washington Metro for his daily commute, as he does not own a car and his workplace does not offer private parking. His work hours are from 8:30 a.m. to 4:30 p.m., and he is not required to work evenings or weekends.\r\n\r\nHis benefits package includes paid sick leave, medical and dental insurance, and employee discounts at affiliated gyms and retail stores. Additionally, the company provides free meals at the office cafeteria, allowing him to save on food expenses.\r\n\r\nJames works in a modern, open-office environment where he regularly interacts with colleagues and clients. His workload is generally manageable but can become more demanding during high-pressure periods. While he has shown strong punctuality and organization, his supervisor, Emily Richards, noted that he could improve in multitasking and prioritizing tasks more efficiently.\r\n\r\nTo enhance his performance, James will take training in task management and workflow automation tools. With support from his colleagues, he aims to improve his efficiency and work toward future career growth within DataTech Solutions.\r\n\r\nHis employment is supported by CareerPath Workforce Services, which acts as his provider. His progress is monitored through a quarterly reporting period. Additionally, he receives guidance from his assigned VR specialist, Michael Thompson, who provides career development support.\n```",
+				"fields": {
+					"Sentiment": {
+						"type": "string",
+						"valueString": "Positive"
+					},
+					"Summary": {
+						"type": "string",
+						"valueString": "James Carter recently joined DataTech Solutions as an administrative assistant, working full-time with a 40-hour schedule. He commutes using the Washington Metro and receives a comprehensive benefits package, including paid sick leave, medical and dental insurance, and employee discounts. James works in an open-office environment with regular interaction with colleagues and clients. While he is punctual and organized, he is working on improving his multitasking skills with the help of training and support from his colleagues and VR specialist, Michael Thompson. His employment is supported by CareerPath Workforce Services, and his progress is monitored quarterly."
+					},
+					"accessibility": {
+						"type": "string",
+						"valueString": "fully_accessible_site"
+					},
+					"address": {
+						"type": "string",
+						"valueString": "500 L Street NW, Washington, D.C., 20005"
+					},
+					"appropriate_responses": {
+						"type": "string",
+						"valueString": "required_frequently"
+					},
+					"authorization_number": {
+						"type": "string",
+						"valueString": "87456-DC"
+					},
+					"career_advancement_opportunity": {
+						"type": "string",
+						"valueString": "most_probable"
+					},
+					"city_state": {
+						"type": "string",
+						"valueString": "Washington, D.C."
+					},
+					"communication_requirements": {
+						"type": "string",
+						"valueString": "clear_speech_required"
+					},
+					"coworker_support": {
+						"type": "string",
+						"valueString": "high"
+					},
+					"days_per_week": {
+						"type": "string",
+						"valueString": "5"
+					},
+					"dental_benefits": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"employee_discounts": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"employer_name": {
+						"type": "string",
+						"valueString": "DataTech Solutions"
+					},
+					"employment_type": {
+						"type": "string",
+						"valueString": "full_time"
+					},
+					"evening_work_required": {
+						"type": "string",
+						"valueString": "no"
+					},
+					"free_or_reduced_meals": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"functional_reading": {
+						"type": "string",
+						"valueString": "fluent_reading"
+					},
+					"grooming_and_cleanliness": {
+						"type": "string",
+						"valueString": "neat_and_clean_required"
+					},
+					"hourly_rate": {
+						"type": "string",
+						"valueString": "$25.50"
+					},
+					"hours_per_week": {
+						"type": "string",
+						"valueString": "40"
+					},
+					"job_accommodations": {
+						"type": "string",
+						"valueString": "very_supportive"
+					},
+					"job_coaching_frequency": {
+						"type": "string",
+						"valueString": "other"
+					},
+					"job_title": {
+						"type": "string",
+						"valueString": "Administrative Assistant"
+					},
+					"level_of_social_contact": {
+						"type": "string",
+						"valueString": "high_contact"
+					},
+					"math_skills": {
+						"type": "string",
+						"valueString": "simple_addition_subtraction"
+					},
+					"medical_health_benefits": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"object_discrimination": {
+						"type": "string",
+						"valueString": "self_identifies"
+					},
+					"paid_leave": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"person_name": {
+						"type": "string",
+						"valueString": "James Carter"
+					},
+					"physical_workload": {
+						"type": "string",
+						"valueString": "light_work"
+					},
+					"private_transportation": {
+						"type": "string",
+						"valueString": "no"
+					},
+					"prompting_and_supervision": {
+						"type": "string",
+						"valueString": "intermittent_low_supervision"
+					},
+					"provider": {
+						"type": "string",
+						"valueString": "CareerPath Workforce Services"
+					},
+					"public_transportation": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"reinforcement_available": {
+						"type": "string",
+						"valueString": "frequent_reinforcement"
+					},
+					"reporting_period": {
+						"type": "string",
+						"valueString": "quarterly"
+					},
+					"sick_leave": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"start_date": {
+						"type": "string",
+						"valueString": "March 1, 2025"
+					},
+					"task_changes": {
+						"type": "string",
+						"valueString": "task_changes_2_3"
+					},
+					"task_requirements": {
+						"type": "string",
+						"valueString": "tasks_in_sequence_4_6"
+					},
+					"time_awareness": {
+						"type": "string",
+						"valueString": "must_tell_time_to_minute"
+					},
+					"visibility_to_public": {
+						"type": "string",
+						"valueString": "regularly_visible"
+					},
+					"vr_specialist_name": {
+						"type": "string",
+						"valueString": "Michael Thompson"
+					},
+					"weekend_work_required": {
+						"type": "string",
+						"valueString": "no"
+					},
+					"work_area": {
+						"type": "string",
+						"valueString": "building_wide"
+					},
+					"work_duration": {
+						"type": "string",
+						"valueString": "more_than_4_hours"
+					},
+					"work_motivation": {
+						"type": "string",
+						"valueString": "coworker_support_available"
+					},
+					"work_pace": {
+						"type": "string",
+						"valueString": "average_pace"
+					},
+					"zip_code": {
+						"type": "string",
+						"valueString": "20005"
+					}
+				},
+				"kind": "document",
+				"startPageNumber": 1,
+				"endPageNumber": 1,
+				"pages": []
+			}
+		]
+	}
+}

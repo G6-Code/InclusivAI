@@ -1,0 +1,155 @@
+{
+	"id": "ab8f8d36-a139-4011-8acb-9378b4f7f998",
+	"status": "Succeeded",
+	"result": {
+		"analyzerId": "auto-labeling-model-1742070092603-106",
+		"apiVersion": "2024-12-01-preview",
+		"createdAt": "2025-03-18T17:33:44Z",
+		"warnings": [],
+		"contents": [
+			{
+				"markdown": "```\nThe jobseeker's name is Emily Turner. Today’s date is February 20, 2025. The career specialist assisting is Michael Brown, and the reporting period spans from October 2024 to February 2025. Michael is a service provider who has known Emily for approximately five to ten years. The interviewee providing this information is Sarah Johnson.\r\n\r\nEmily enjoys outdoor activities such as hiking and kayaking. In her leisure time, she prefers activities like painting landscapes and practicing yoga. She thrives in calm environments, particularly those with natural light and minimal distractions. Emily's talents include her exceptional organizational skills and her creativity in crafting handmade jewelry. She learns new tasks most effectively through step-by-step instructions combined with hands-on practice.\r\n\r\nOver the past few years, Emily has participated in several unpaid work experiences, including organizing community events and volunteering at a local animal shelter. She regularly completes household chores such as cooking meals, cleaning, and managing the family garden. In her community, Emily is an active participant in fundraising events and environmental cleanup initiatives.\r\n\r\nEmily has undergone vocational training in event planning and is proficient in using scheduling and project management software. Academically, she has strong literacy and numerical skills, allowing her to manage budgets and interpret complex information with ease.\r\n\r\nHowever, Emily dislikes environments that are overly noisy or chaotic, as they make it difficult for her to focus. It is recommended to avoid job roles that require frequent public speaking or night shifts, as she finds these situations particularly challenging.\r\n\r\nCurrently, Emily receives support from a vocational counselor and a mentor. To succeed in a workplace, she would benefit from accommodations such as a quiet workspace and access to a structured schedule. It’s important to maintain her ongoing mentorship program and provide occasional job-coaching sessions.\r\n\r\nFor transportation, Emily primarily relies on public transit, and she occasionally uses a bike for short distances. To sustain employment, access to reliable public transportation will be essential, or alternatively, assistance with arranging carpooling options.\r\n\r\nEmily’s temperament is described as patient, diligent, and highly approachable. Her most admired traits include her resilience, attention to detail, and genuine kindness. Emily’s dream job would be working as an event coordinator for a company that promotes sustainable practices. She has a routine of starting her mornings with a cup of tea and a brisk walk, which helps her set a positive tone for the day.\r\n\r\nTo gather this information, various methods were used. Michael conducted one-on-one interviews with Emily and observed her in a vocational training workshop. He reviewed her files and spoke with her mentor and family members to gain deeper insights. Additionally, Michael observed her participation in a community event, where she demonstrated her teamwork and leadership skills.\n```",
+				"fields": {
+					"Sentiment": {
+						"type": "string",
+						"valueString": "Positive"
+					},
+					"Summary": {
+						"type": "string",
+						"valueString": "Emily Turner is a jobseeker who is being assisted by career specialist Michael Brown. She enjoys outdoor activities and has talents in organization and creativity. Emily thrives in calm environments and learns best through hands-on practice. She has participated in unpaid work experiences and vocational training in event planning. Emily dislikes noisy environments and public speaking. She receives support from a vocational counselor and mentor, and requires accommodations like a quiet workspace. Her dream job is to be an event coordinator for a sustainable company. Information was gathered through interviews, observations, and file reviews."
+					},
+					"academic_skills": {
+						"type": "string",
+						"valueString": "Emily has strong literacy and numerical skills, allowing her to manage budgets and interpret complex information with ease."
+					},
+					"additional_information": {
+						"type": "string"
+					},
+					"admired_characteristics": {
+						"type": "string",
+						"valueString": "Her most admired traits include her resilience, attention to detail, and genuine kindness."
+					},
+					"career_specialist": {
+						"type": "string",
+						"valueString": "Michael Brown"
+					},
+					"community_activities": {
+						"type": "string",
+						"valueString": "Emily is an active participant in fundraising events and environmental cleanup initiatives."
+					},
+					"current_services": {
+						"type": "string",
+						"valueString": "Currently, Emily receives support from a vocational counselor and a mentor."
+					},
+					"dislikes": {
+						"type": "string",
+						"valueString": "Emily dislikes environments that are overly noisy or chaotic, and job roles that require frequent public speaking or night shifts."
+					},
+					"dream_job": {
+						"type": "string",
+						"valueString": "Emily’s dream job would be working as an event coordinator for a company that promotes sustainable practices."
+					},
+					"environmental_conditions": {
+						"type": "string",
+						"valueString": "She thrives in calm environments, particularly those with natural light and minimal distractions."
+					},
+					"form_date": {
+						"type": "string",
+						"valueString": "2025-02-20"
+					},
+					"habits_routines": {
+						"type": "string",
+						"valueString": "She has a routine of starting her mornings with a cup of tea and a brisk walk."
+					},
+					"household_chores": {
+						"type": "string",
+						"valueString": "Emily regularly completes household chores such as cooking meals, cleaning, and managing the family garden."
+					},
+					"information_collected": {
+						"type": "string",
+						"valueString": "one_on_one"
+					},
+					"interests_activities": {
+						"type": "string",
+						"valueString": "Emily enjoys outdoor activities such as hiking and kayaking."
+					},
+					"interviewee_duration": {
+						"type": "string",
+						"valueString": "five_to_ten"
+					},
+					"interviewee_name": {
+						"type": "string",
+						"valueString": "Sarah Johnson"
+					},
+					"jobseeker_name": {
+						"type": "string",
+						"valueString": "Emily Turner"
+					},
+					"learning_methods": {
+						"type": "string",
+						"valueString": "She learns new tasks most effectively through step-by-step instructions combined with hands-on practice."
+					},
+					"leisure_activities": {
+						"type": "string",
+						"valueString": "In her leisure time, she prefers activities like painting landscapes and practicing yoga."
+					},
+					"met_benefits_specialist": {
+						"type": "string",
+						"valueString": "no"
+					},
+					"necessary_accommodations": {
+						"type": "string",
+						"valueString": "To succeed in a workplace, she would benefit from accommodations such as a quiet workspace and access to a structured schedule."
+					},
+					"position_title": {
+						"type": "string"
+					},
+					"relationship_jobseeker": {
+						"type": "string",
+						"valueString": "service_provider"
+					},
+					"reporting_period": {
+						"type": "string",
+						"valueString": "October 2024 to February 2025"
+					},
+					"situations_to_avoid": {
+						"type": "string",
+						"valueString": "It is recommended to avoid job roles that require frequent public speaking or night shifts."
+					},
+					"support_needs": {
+						"type": "string",
+						"valueString": "It’s important to maintain her ongoing mentorship program and provide occasional job-coaching sessions."
+					},
+					"talents": {
+						"type": "string",
+						"valueString": "Emily's talents include her exceptional organizational skills and her creativity in crafting handmade jewelry."
+					},
+					"temperament": {
+						"type": "string",
+						"valueString": "Emily’s temperament is described as patient, diligent, and highly approachable."
+					},
+					"transportation_methods": {
+						"type": "string",
+						"valueString": "Emily primarily relies on public transit, and she occasionally uses a bike for short distances."
+					},
+					"transportation_resources": {
+						"type": "string",
+						"valueString": "To sustain employment, access to reliable public transportation will be essential, or alternatively, assistance with arranging carpooling options."
+					},
+					"vocational_training": {
+						"type": "string",
+						"valueString": "Emily has undergone vocational training in event planning and is proficient in using scheduling and project management software."
+					},
+					"work_experiences": {
+						"type": "string",
+						"valueString": "Emily has participated in several unpaid work experiences, including organizing community events and volunteering at a local animal shelter."
+					}
+				},
+				"kind": "document",
+				"startPageNumber": 1,
+				"endPageNumber": 1,
+				"pages": []
+			}
+		]
+	}
+}

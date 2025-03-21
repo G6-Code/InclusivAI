@@ -1,0 +1,216 @@
+{
+	"id": "639156a4-6c35-4fe9-8cf2-a61054fcf019",
+	"status": "Succeeded",
+	"result": {
+		"analyzerId": "auto-labeling-model-1742277076706-440",
+		"apiVersion": "2024-12-01-preview",
+		"createdAt": "2025-03-20T04:15:28Z",
+		"warnings": [],
+		"contents": [
+			{
+				"markdown": "```\nMateo Ramírez just started a new job as an administrative assistant at Tech Solutions Inc., located at 1100 K Street NW, Washington, D.C. His first day of work was April 1, 2024, and his contract establishes a 40-hour workweek, working Monday through Friday with a salary of $24.00 per hour.\r\n\r\nTo commute to work, Mateo uses the Washington Metro, as he lives in an apartment in Silver Spring, Maryland, and does not own a car. He does not have private parking at the office, so he relies entirely on public transportation. His schedule is daytime, from 9:00 a.m. to 5:00 p.m., and he is not required to work weekends or night shifts.\r\n\r\nAs part of his benefits package, Mateo has access to sick leave, medical and dental insurance, as well as employee discounts at gyms and associated stores. Additionally, the company offers free meals in the building's cafeteria, allowing him to save on food during the workweek.\r\n\r\nHis work environment is a modern and accessible office, with a moderate level of social contact, as he needs to interact with clients and colleagues from different departments. His workload is light to moderate, and most of his tasks are performed in a shared office space with access to meeting rooms. Occasionally, the work pace can become more dynamic as deadlines approach, although it generally remains stable.\r\n\r\nAfter his first month, his supervisor, Laura Gómez, evaluated his performance as satisfactory. He has shown punctuality and organization, but needs improvement in managing multiple tasks simultaneously. As a result, he has been recommended to take additional training in time management and productivity tools.\r\n\r\nThe next step in his development within the company will be to attend these trainings and receive support from his colleagues to improve his efficiency in assigned tasks. Over time, he hopes to advance within the company and take advantage of all the professional growth opportunities that Tech Solutions Inc. offers him.\r\n\n```",
+				"fields": {
+					"Sentiment": {
+						"type": "string",
+						"valueString": "Positive"
+					},
+					"Summary": {
+						"type": "string",
+						"valueString": "Mateo Ramírez has started a new job as an administrative assistant at Tech Solutions Inc. in Washington, D.C. He works a 40-hour week from Monday to Friday, earning $24.00 per hour. Mateo commutes using public transportation and benefits from sick leave, medical and dental insurance, employee discounts, and free meals. His work environment is modern and accessible, with moderate social contact. After a satisfactory performance evaluation, he is advised to improve his multitasking skills through additional training. Mateo aims to advance within the company and utilize professional growth opportunities."
+					},
+					"accessibility": {
+						"type": "string",
+						"valueString": "fully_accessible_site"
+					},
+					"address": {
+						"type": "string",
+						"valueString": "1100 K Street NW, Washington, D.C."
+					},
+					"appropriate_responses": {
+						"type": "string",
+						"valueString": "required_frequently"
+					},
+					"authorization_number": {
+						"type": "string"
+					},
+					"career_advancement_opportunity": {
+						"type": "string",
+						"valueString": "most_probable"
+					},
+					"city_state": {
+						"type": "string",
+						"valueString": "Washington, D.C."
+					},
+					"communication_requirements": {
+						"type": "string",
+						"valueString": "clear_speech_required"
+					},
+					"coworker_support": {
+						"type": "string",
+						"valueString": "high"
+					},
+					"days_per_week": {
+						"type": "string",
+						"valueString": "5"
+					},
+					"dental_benefits": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"employee_discounts": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"employer_name": {
+						"type": "string",
+						"valueString": "Tech Solutions Inc."
+					},
+					"employment_type": {
+						"type": "string",
+						"valueString": "full_time"
+					},
+					"evening_work_required": {
+						"type": "string",
+						"valueString": "no"
+					},
+					"free_or_reduced_meals": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"functional_reading": {
+						"type": "string",
+						"valueString": "fluent_reading"
+					},
+					"grooming_and_cleanliness": {
+						"type": "string",
+						"valueString": "neat_and_clean_required"
+					},
+					"hourly_rate": {
+						"type": "string",
+						"valueString": "$24.00"
+					},
+					"hours_per_week": {
+						"type": "string",
+						"valueString": "40"
+					},
+					"job_accommodations": {
+						"type": "string",
+						"valueString": "very_supportive"
+					},
+					"job_coaching_frequency": {
+						"type": "string",
+						"valueString": "other"
+					},
+					"job_title": {
+						"type": "string",
+						"valueString": "Administrative Assistant"
+					},
+					"level_of_social_contact": {
+						"type": "string",
+						"valueString": "moderate_contact"
+					},
+					"math_skills": {
+						"type": "string",
+						"valueString": "simple_addition_subtraction"
+					},
+					"medical_health_benefits": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"object_discrimination": {
+						"type": "string",
+						"valueString": "self_identifies"
+					},
+					"paid_leave": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"person_name": {
+						"type": "string",
+						"valueString": "Mateo Ramírez"
+					},
+					"physical_workload": {
+						"type": "string",
+						"valueString": "light_work"
+					},
+					"private_transportation": {
+						"type": "string",
+						"valueString": "no"
+					},
+					"prompting_and_supervision": {
+						"type": "string",
+						"valueString": "intermittent_low_supervision"
+					},
+					"provider": {
+						"type": "string"
+					},
+					"public_transportation": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"reinforcement_available": {
+						"type": "string",
+						"valueString": "frequent_reinforcement"
+					},
+					"reporting_period": {
+						"type": "string"
+					},
+					"sick_leave": {
+						"type": "string",
+						"valueString": "yes"
+					},
+					"start_date": {
+						"type": "string",
+						"valueString": "April 1, 2024"
+					},
+					"task_changes": {
+						"type": "string",
+						"valueString": "task_changes_2_3"
+					},
+					"task_requirements": {
+						"type": "string",
+						"valueString": "tasks_in_sequence_2_3"
+					},
+					"time_awareness": {
+						"type": "string",
+						"valueString": "must_tell_time_to_hour"
+					},
+					"visibility_to_public": {
+						"type": "string",
+						"valueString": "occasionally_visible"
+					},
+					"vr_specialist_name": {
+						"type": "string"
+					},
+					"weekend_work_required": {
+						"type": "string",
+						"valueString": "no"
+					},
+					"work_area": {
+						"type": "string",
+						"valueString": "several_rooms"
+					},
+					"work_duration": {
+						"type": "string",
+						"valueString": "more_than_4_hours"
+					},
+					"work_motivation": {
+						"type": "string",
+						"valueString": "required"
+					},
+					"work_pace": {
+						"type": "string",
+						"valueString": "average_pace"
+					},
+					"zip_code": {
+						"type": "string"
+					}
+				},
+				"kind": "document",
+				"startPageNumber": 1,
+				"endPageNumber": 1,
+				"pages": []
+			}
+		]
+	}
+}
