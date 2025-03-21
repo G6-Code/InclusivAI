@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import "./globals.css"
+import { PdfWorker } from "@/components/PdfWorker"
 
 export const metadata: Metadata = {
   title: "InclusivAI v1 App",
@@ -16,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background text-foreground min-h-screen">
       <body className="min-h-screen flex flex-col">
-        
+        <PdfWorker /> {/* ⚙️ Aquí cargamos el worker de PDF.js en el cliente */}
         <header className="p-4">
           <Image
             src="/images/placeholder-logo1.png"
@@ -28,10 +29,7 @@ export default function RootLayout({
           />
         </header>
 
-        
-        <main className="flex-1 container mx-auto">
-          {children}
-        </main>
+        <main className="flex-1 container mx-auto">{children}</main>
       </body>
     </html>
   )
