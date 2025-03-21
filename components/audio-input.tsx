@@ -5,7 +5,7 @@ import { FormSelector } from "@/components/form-selector"
 import { TranscriptionDisplay } from "@/components/transcription-display"
 import { UploadProgress } from "@/components/upload-progress"
 import { UploadDocument } from "@/components/upload-document"
-import { AudioRecorder } from "@/components/audio-recorder" 
+import { AudioRecorder } from "@/components/audio-recorder" // 🎤 Agregado para grabar audio
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -55,8 +55,10 @@ export default function InclusivAI() {
 
             <FormSelector selectedForms={selectedForms} setSelectedForms={setSelectedForms} />
 
+            {/* 🔹 Sección de carga de documentos */}
             <UploadDocument documentFile={documentFile} setDocumentFile={setDocumentFile} />
 
+            {/* 🔹 Sección de carga/grabación de audio */}
             <div className="space-y-4">
               <h2 className="text-xl font-semibold border-b pb-2">Audio Upload & Recording</h2>
               <AudioRecorder setAudioFile={setAudioFile} />
@@ -64,7 +66,13 @@ export default function InclusivAI() {
 
             <div className="space-y-2">
               <Label htmlFor="notes" className="text-base">Additional Notes</Label>
-              <Textarea id="notes" value={notes} onChange={(e) => setNotes(e.target.value)} />
+              <Textarea
+                id="notes"
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                placeholder="Enter any additional information or context"
+                className="min-h-[100px]"
+              />
             </div>
           </form>
         </div>
