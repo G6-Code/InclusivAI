@@ -3,13 +3,11 @@
 </p>
 
 # InclusivAI
+A tool to empower job coaches to unlock the full potential of supported employment.
+
+**Less Paperwork, More Impact**
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/G6-Code/InclusivAI)
-
-## Descripción
-InclusivAI es una solución desarrollada para el **Innovation Challenge March 2025 de Microsoft**, dentro del desafío **AI for Supported Employment Job Coaches**. Su propósito es asistir a entrenadores laborales en la recopilación, gestión y transcripción de sesiones con sus clientes mediante herramientas de inteligencia artificial en Azure.
-
-El frontend de InclusivAI está desarrollado con **React y NextJS**, mientras que el backend está alojado en **Azure**, donde se procesan las transcripciones y se almacenan los datos.
 
 ## Screenshots
 
@@ -36,7 +34,7 @@ El frontend de InclusivAI está desarrollado con **React y NextJS**, mientras qu
 5. **Azure AI Content Understanding**: 
    - Extracts text and fields from uploaded documents for further processing.
 
-6. **External API (job-recommend)**: 
+6. **External API (www.usajobs.gov)**: 
    - Interfaces with Azure Machine Learning models to recommend jobs based on extracted data.
 
 7. **Azure Machine Learning**: 
@@ -58,7 +56,7 @@ El frontend de InclusivAI está desarrollado con **React y NextJS**, mientras qu
 12. **Azure AI Search**: 
     - Offers efficient search functionalities across the stored datasets.
 
-13. **Azure OpenAI GPT40-mini**: 
+13. **Azure OpenAI GPT4o-mini**: 
     - Powers the chat assistant (InclusivAI Assistant), providing conversational help for job coaches.
 
 14. **CI/CD, Identity, Monitoring & Secrets**:
@@ -67,8 +65,8 @@ El frontend de InclusivAI está desarrollado con **React y NextJS**, mientras qu
     - **Azure Key Vault**: Safeguards secrets and encryption keys.
     - **Azure DevOps & GitHub**: Supports continuous integration/deployment and code versioning.
 
-### **Frontend Technologies**
-Web apps for job coaches (developed with modern frameworks such as Next.js and deployed on Azure Web Apps).
+15. **Frontend Technologies**
+    - Web apps for job coaches (developed with modern frameworks such as Next.js and deployed on Azure Web Apps).
 
 ## Architecture Diagram
 
@@ -119,6 +117,149 @@ Access the application at `http://localhost:3000`
 ```bash
 vercel
 ```
+
+## Backend
+### Deploy Azure Functions
+
+The backend logic for InclusivAI is implemented using Azure Functions, located in the `/services` directory. Follow these steps to deploy and configure the Azure Functions:
+
+#### Prerequisites
+- Azure CLI installed
+- An active Azure account
+- Python (`>= 3.10`)
+- Azure Functions Core Tools
+
+#### Steps to Deploy
+
+1. **Navigate to the Services Directory**
+   ```bash
+   cd services
+   ```
+
+2. **Create a Virtual Environment** Create and activate a virtual environment for the Azure Functions:  
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+    ```
+
+3. **Install Dependencies** Install the required Python dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Create a Local Settings File** Create a local.settings.json file in the /services directory to define the required environment variables:
+   ```json
+    {
+      "IsEncrypted": false,
+      "Values": {
+        "AzureWebJobsStorage": "<AZURE_STORAGE_CONNECTION_STRING>",
+        "FUNCTIONS_WORKER_RUNTIME": "python",
+        "API_URL": "<YOUR_API_URL>",
+        "SUBSCRIPTION_KEY": "<YOUR_SUBSCRIPTION_KEY>"
+      }
+    }
+   ```
+
+5. Test Locally Run the Azure Functions locally to ensure they work as expected:
+
+6. Login to Azure Authenticate with your Azure account:
+
+7. Create a Resource Group Create a resource group to host the Azure Functions:
+
+8. Create a Function App Create a Function App in Azure:
+
+9. Deploy the Functions Deploy the Azure Functions to the created Function App:
+
+10. **Verify Deployment** Go to the Azure Portal, navigate to the Function App, and verify that the functions are deployed and running.
+
+####Notes
+- Replace <AZURE_STORAGE_CONNECTION_STRING>, <YOUR_API_URL>, <YOUR_SUBSCRIPTION_KEY>, <LOCATION>, and <STORAGE_ACCOUNT_NAME> with your actual values.
+- Ensure that the Azure Functions have the necessary permissions to access the required Azure resources.
+For more details, refer to the Azure Functions Documentation(```markdown
+### Deploy Azure Functions
+
+The backend logic for InclusivAI is implemented using Azure Functions, located in the `/services` directory. Follow these steps to deploy and configure the Azure Functions:
+
+#### Prerequisites
+- Azure CLI installed (`npm install -g azure-cli`)
+- An active Azure account
+- Python (`>= 3.10`)
+- Azure Functions Core Tools (`npm install -g azure-functions-core-tools@4`)
+- Virtual environment tool (`python -m pip install virtualenv`)
+
+#### Steps to Deploy
+
+1. **Navigate to the Services Directory**
+   ```bash
+   cd services
+   ```
+
+2. **Create a Virtual Environment**
+   Create and activate a virtual environment for the Azure Functions:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+
+3. **Install Dependencies**
+   Install the required Python dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Create a Local Settings File**
+   Create a `local.settings.json` file in the `/services` directory to define the required environment variables:
+   ```json
+   {
+     "IsEncrypted": false,
+     "Values": {
+       "AzureWebJobsStorage": "<AZURE_STORAGE_CONNECTION_STRING>",
+       "FUNCTIONS_WORKER_RUNTIME": "python",
+       "API_URL": "<YOUR_API_URL>",
+       "SUBSCRIPTION_KEY": "<YOUR_SUBSCRIPTION_KEY>"
+     }
+   }
+   ```
+
+5. **Test Locally**
+   Run the Azure Functions locally to ensure they work as expected:
+   ```bash
+   func start
+   ```
+
+6. **Login to Azure**
+   Authenticate with your Azure account:
+   ```bash
+   az login
+   ```
+
+7. **Create a Resource Group**
+   Create a resource group to host the Azure Functions:
+   ```bash
+   az group create --name InclusivAIResourceGroup --location <LOCATION>
+   ```
+
+8. **Create a Function App**
+   Create a Function App in Azure:
+   ```bash
+   az functionapp create --resource-group InclusivAIResourceGroup --consumption-plan-location <LOCATION> --runtime python --functions-version 4 --name InclusivAIFunctionApp --storage-account <STORAGE_ACCOUNT_NAME>
+   ```
+
+9. **Deploy the Functions**
+   Deploy the Azure Functions to the created Function App:
+   ```bash
+   func azure functionapp publish InclusivAIFunctionApp
+   ```
+
+10. **Verify Deployment**
+    Go to the Azure Portal, navigate to the Function App, and verify that the functions are deployed and running.
+
+#### Notes
+- Replace `<AZURE_STORAGE_CONNECTION_STRING>`, `<YOUR_API_URL>`, `<YOUR_SUBSCRIPTION_KEY>`, `<LOCATION>`, and `<STORAGE_ACCOUNT_NAME>` with your actual values.
+- Ensure that the Azure Functions have the necessary permissions to access the required Azure resources.
+
+For more details, refer to the [Azure Functions Documentation](https://learn.microsoft.com/en-us/azure/azure-functions/).
+ 
 
 ## Contribution
 If you want to contribute, follow these steps:
