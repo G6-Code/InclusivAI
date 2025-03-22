@@ -14,8 +14,6 @@ export function TranscriptionDisplay({ transcription }: TranscriptionDisplayProp
   const [isEditing, setIsEditing] = useState(false)
   const [editedTranscription, setEditedTranscription] = useState(transcription)
 
-  // Update edited transcription when the original changes
-  // (e.g., when a new transcription is received)
   if (transcription !== editedTranscription && !isEditing) {
     setEditedTranscription(transcription)
   }
@@ -26,8 +24,6 @@ export function TranscriptionDisplay({ transcription }: TranscriptionDisplayProp
 
   const handleSave = () => {
     setIsEditing(false)
-    // Here you would typically send the edited transcription back to the server
-    // For now, we just update the local state
   }
 
   const handleCancel = () => {
@@ -38,7 +34,7 @@ export function TranscriptionDisplay({ transcription }: TranscriptionDisplayProp
   return (
     <Card className="h-full">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-xl">Transcription</CardTitle>
+        <CardTitle className="text-lg">Transcription</CardTitle>
         {transcription && !isEditing && (
           <Button variant="ghost" size="sm" onClick={handleEdit} aria-label="Edit transcription">
             <Edit2 className="h-4 w-4 mr-1" />
@@ -64,16 +60,16 @@ export function TranscriptionDisplay({ transcription }: TranscriptionDisplayProp
             <Textarea
               value={editedTranscription}
               onChange={(e) => setEditedTranscription(e.target.value)}
-              className="min-h-[300px] resize-none"
+              className="max-h-40 overflow-auto resize-none"
               placeholder="Edit transcription..."
             />
           ) : (
-            <div className="bg-muted p-4 rounded-md min-h-[300px] whitespace-pre-wrap text-sm">
+            <div className="bg-muted p-4 rounded-md max-h-40 overflow-auto text-sm">
               {editedTranscription}
             </div>
           )
         ) : (
-          <div className="flex items-center justify-center min-h-[300px] text-muted-foreground text-center p-4">
+          <div className="flex items-center justify-center max-h-40 text-muted-foreground text-center p-4">
             <p>Transcription will appear here after processing audio</p>
           </div>
         )}
@@ -81,4 +77,3 @@ export function TranscriptionDisplay({ transcription }: TranscriptionDisplayProp
     </Card>
   )
 }
-
