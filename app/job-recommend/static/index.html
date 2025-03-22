@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        /* Estilos mejorados */
+        :root {
+            --primary-color:  #BFBFBF;
+            --success-color: #1F8378;
+            --error-color: #ef4444;
+            --text-light: black;
+        } 
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 1rem;
+            background:white;
+        }
+
+        .chat-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: black;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: var(--primary-color);
+            display: flex;
+            color: black;
+            padding: 1.5rem;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .header-img {
+            width: 130px; 
+            height: 40px;
+            object-fit: cover; 
+            margin-right: 10px; 
+            border-radius: 10%; 
+        }
+
+        .chat-messages {
+            height: 60vh;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background: white;
+        }
+
+        .message {
+            margin: 0.75rem 0;
+            padding: 1rem 1.5rem;
+            border-radius: 1.5rem;
+            max-width: 80%;
+            animation: fadeIn 0.3s ease;
+            line-height: 1.5;
+        }
+
+        .user-message {
+            background: var(--primary-color);
+            color: var(--text-light);
+            margin-left: auto;
+        }
+
+        .bot-message {
+            background: white;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .input-container {
+            padding: 1.5rem;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 0.75rem;
+            position: relative;
+        }
+
+        input {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 2rem;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        button {
+            background: var(--primary-color);
+            color: black;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .job-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .job-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .loading-indicator {
+            display: none;
+            position: absolute;
+            right: 6.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+        }
+
+        .error-message {
+            background: var(--error-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(1rem); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 640px) {
+            .chat-container {
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            .chat-messages {
+                height: 70vh;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <img src="static/image/inclusiveai_logo.png" alt="Logo" class="header-img">
+            🤖 Recommend job assistant
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <strong>Hello! I am your job search assistant</strong>
+                <p>I can help you find the best possible job. Here are some examples of how you can ask me:</p>
+                <ul>
+                    <li>"I have cooking experience and I'm looking for a job in Alabama"</li>
+                    <li>"I have knowledge of engineering and electric fundamentals in Washington"</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="input-container">
+            <div class="loading-indicator" id="loading">Cargando...</div>
+            <input type="text" id="userInput" placeholder="Escribe tu mensaje..." aria-label="Escribe tu consulta">
+            <button onclick="sendMessage()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                </svg>
+                Enviar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const API_ENDPOINT = 'http://localhost:5000/api/recommend';
+        let isProcessing = false;
+
+        async function sendMessage() {
+            if (isProcessing) return;
+            
+            const userInput = document.getElementById('userInput');
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            isProcessing = true;
+            toggleLoading(true);
+            addMessage(message, 'user');
+            userInput.value = '';
+
+            try {
+                const { description, location } = parseInput(message);
+                
+                if (!location) {
+                    throw new Error('Please, type your location');
+                }
+
+                const response = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        description,
+                        location
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                displayResults(data.results);
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                isProcessing = false;
+                toggleLoading(false);
+            }
+        }
+
+        function parseInput(text) {
+            // Expresión regular optimizada para inglés/español
+            const locationRegex = /(\b(?:based in|in|at|near|ubicación|location|en|busco|seeking|from|of|employment in|jobs in)\b\s*)([a-zA-ZáéíóúñÁÉÍÓÚÑ\s,\-']+)/i;
+            const match = text.match(locationRegex);
+            
+            let location = '';
+            let description = text;
+        
+            if (match) {
+                location = match[2].trim();
+                description = text.replace(match[0], '').trim();
+            }
+        
+            // Limpieza adicional de la descripción
+            description = description.replace(/\b(looking for|busco|seeking)\b/gi, '').trim();
+        
+            return { description, location };
+        }
+
+        function displayResults(jobs) {
+            const container = document.getElementById('chatMessages');
+            
+            if (!jobs || jobs.length === 0) {
+                addMessage('Oops! I couldn’t quite get that 😞. Could you try again with a job description and location?');
+                return;
+            }
+
+            const message = document.createElement('div');
+            message.className = 'message bot-message';
+            
+            const title = document.createElement('p');
+            title.innerHTML = `🔍 <strong>I've found ${jobs.length} vacancies for you:</strong>`;
+            message.appendChild(title);
+
+            jobs.forEach((job, index) => {
+                const card = document.createElement('div');
+                card.className = 'job-card';
+                
+                card.innerHTML = `
+                    <h3>${index + 1}. ${job.JobCategory}</h3>
+                    <p>📍 Location: ${formatLocation(job.Latitude, job.Longitude)}</p>
+                    <p>💰 Averange salary: ${formatSalary(job.Avg_salary)}</p>
+                    <a href="${job.URL}" target="_blank" rel="noopener noreferrer" class="job-link">
+                        🌐 The vacant details.
+                    </a>
+                `;
+
+                message.appendChild(card);
+            });
+
+            container.appendChild(message);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function formatSalary(amount) {
+            return amount ? `$${amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}` : 'No especificado';
+        }
+
+        function formatLocation(lat, lon) {
+            return `${Number(lat).toFixed(3)}, ${Number(lon).toFixed(3)}`;
+        }
+
+        function addMessage(text, sender) {
+            const container = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.textContent = text;
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'message bot-message error-message';
+            errorDiv.textContent = `⚠️ ${message}`;
+            document.getElementById('chatMessages').appendChild(errorDiv);
+        }
+
+        function toggleLoading(show) {
+            document.getElementById('loading').style.display = show ? 'block' : 'none';
+        }
+
+        // Manejo de eventos
+        document.getElementById('userInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
