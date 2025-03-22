@@ -11,7 +11,7 @@ A tool to empower job coaches to unlock the full potential of supported employme
 
 ## Screenshots
 
-![Home Screenshot]()
+![Home Screenshot](/docs/screenshots/home.png)
 ![Chatbot Screenshot](/docs/screenshots/chatbot.png)
 ![Recommender System Screenshot](/docs/screenshots/recommender-system.png)
 
