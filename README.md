@@ -78,7 +78,8 @@ Here's a high level architecture diagram that illustrates these components. Thes
 
 The following video shows the user interface.
 
-[![Watch the video]()]()
+[![Watch the video](/docs/screenshots/thumbnail.png)](https://www.youtube.com/watch?v=RENtcP0bCGU)
+
 
 ## Installation and Execution
 
