@@ -1,98 +1,132 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/G6-Code/InclusivAI/refs/heads/main/docs/banner/banner.png" alt="Banner">
+</p>
+
 # InclusivAI
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/G6-Code/InclusivAI)
 
 ## Descripción
 InclusivAI es una solución desarrollada para el **Innovation Challenge March 2025 de Microsoft**, dentro del desafío **AI for Supported Employment Job Coaches**. Su propósito es asistir a entrenadores laborales en la recopilación, gestión y transcripción de sesiones con sus clientes mediante herramientas de inteligencia artificial en Azure.
 
 El frontend de InclusivAI está desarrollado con **React y NextJS**, mientras que el backend está alojado en **Azure**, donde se procesan las transcripciones y se almacenan los datos.
 
-## Funcionalidades
+## Screenshots
 
-### Captura de Información del Usuario
-- Registro del nombre del entrenador laboral y del cliente.
-- Selección del tipo de sesión:
-  - Entrevista Inicial
-  - Visita al Sitio de Trabajo
-  - Reunión con Empleador
-  - Sesión de Capacitación
-  - Seguimiento
-- Entrada de notas adicionales.
+![Home Screenshot]()
+![Chatbot Screenshot](/docs/screenshots/chatbot.png)
+![Recommender System Screenshot](/docs/screenshots/recommender-system.png)
 
-### Gestión de Archivos de Audio
-- Carga de archivos de audio en formatos compatibles (`.wav`, `.mp3`).
-- Grabación de audio en tiempo real utilizando el micrófono del dispositivo.
-- Indicación visual del estado de grabación.
-- Almacenamiento automático de la grabación.
 
-### Procesamiento de Transcripción
-- Envío de audio a un servicio en la nube para su transcripción.
-- Indicador de carga mientras el audio se procesa.
-- Visualización de la transcripción generada.
-- Manejo de errores en caso de fallas en la transcripción.
+### **Services Used and Their Roles**
+1. **Azure Web App**: 
+   - Hosts the application.
+   - Provides functionality for the ingestion, recommendation system, and chat assistant, allowing job coaches to interact seamlessly.
 
-### Integración con Azure
-- Envío de datos capturados a una API en Azure mediante una solicitud HTTP POST.
-- Autenticación mediante una clave de suscripción (`Ocp-Apim-Subscription-Key`) si es necesario.
-- Recepción y despliegue de la transcripción del audio desde la API.
+2. **Azure Blob Storage**: 
+   - Serves as a repository for data such as images (JPG), documents (PDF), text files (TXT), and audio files (WAV).
+   - Stores processed outputs like transcriptions and completed forms.
 
-### Interfaz de Usuario y Experiencia
-- Diseño intuitivo y accesible para usuarios con discapacidad.
-- Interfaz adaptable a dispositivos móviles y de escritorio.
-- Identificación clara de botones y campos de entrada.
-- Opción para limpiar los datos antes de enviarlos.
+3. **Speech-to-Text Service**: 
+   - Converts audio files (WAV) into text for processing and understanding.
 
-## Requisitos Técnicos
+4. **Content Understanding Service**: 
+   - Processes various formats (images, PDFs, text files, audio) to extract meaningful data.
 
-### Requisitos Funcionales
-- Compatibilidad con navegadores modernos: **Chrome, Edge, Firefox, Safari**.
-- Cumplimiento con los permisos del navegador para la grabación de audio.
-- Tiempo de respuesta del servicio de transcripción inferior a **10 segundos** en promedio.
-- Seguridad de datos garantizada mediante **cifrado en tránsito (HTTPS)**.
-- Optimización para manejar archivos de audio de hasta **10 MB**.
+5. **Azure AI Content Understanding**: 
+   - Extracts text and fields from uploaded documents for further processing.
 
-## Instalación y Ejecución
+6. **External API (job-recommend)**: 
+   - Interfaces with Azure Machine Learning models to recommend jobs based on extracted data.
 
-### Requisitos Previos
+7. **Azure Machine Learning**: 
+   - Processes the extracted fields and provides personalized job recommendations.
+
+8. **Azure CosmosDB**: 
+   - Stores extracted fields and other relevant data in a scalable manner for retrieval and analysis.
+
+9. **Form-Filler Service**: 
+   - Automatically populates forms using the extracted data.
+   - Stores completed forms in Azure Blob Storage.
+
+10. **Azure Synapse Analytics**: 
+    - Analyzes the data stored in Azure CosmosDB and Azure SQL Database for insights.
+
+11. **Azure SQL Database**: 
+    - Maintains structured data for recommendation system and data analysis purposes.
+
+12. **Azure AI Search**: 
+    - Offers efficient search functionalities across the stored datasets.
+
+13. **Azure OpenAI GPT40-mini**: 
+    - Powers the chat assistant (InclusivAI Assistant), providing conversational help for job coaches.
+
+14. **CI/CD, Identity, Monitoring & Secrets**:
+    - **Microsoft Entra ID**: Manages user authentication and access control.
+    - **Azure Monitor & Application Insights**: Ensures optimal performance and monitoring of all services.
+    - **Azure Key Vault**: Safeguards secrets and encryption keys.
+    - **Azure DevOps & GitHub**: Supports continuous integration/deployment and code versioning.
+
+### **Frontend Technologies**
+Web apps for job coaches (developed with modern frameworks such as Next.js and deployed on Azure Web Apps).
+
+## Architecture Diagram
+
+Here's a high level architecture diagram that illustrates these components. These are all contained within a single [resource group](https://docs.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal)
+
+![Architecture Diagram](/docs/architecture-diagram/architecture-diagram.jpg)
+
+## Demo Video
+
+The following video shows the user interface.
+
+[![Watch the video]()]()
+
+## Installation and Execution
+
+## Frontend
+
+### Prerequisites
 - Node.js (`>= 18`)
 - Vercel CLI (`pnpm add -g vercel`)
-- Cuenta de Azure con acceso a los servicios de almacenamiento y transcripción de audio
+- Azure account with access to storage and audio transcription services
 
-### Clonar el Repositorio
+### Clone the Repository
 ```bash
-git clone https://github.com/usuario/inclusivai.git
+git clone https://github.com/user/inclusivai.git
 cd inclusivai
 ```
 
-### Configurar Variables de Entorno
-Crear un archivo `.env.local` en la raíz del proyecto y definir las siguientes variables:
+### Configure Environment Variables
+Create a `.env.local` file in the root of the project and define the following variables:
 ```ini
-NEXT_PUBLIC_API_URL=<URL_DE_LA_API_AZURE>
-NEXT_PUBLIC_SUBSCRIPTION_KEY=<CLAVE_DE_SUSCRIPCIÓN>
+NEXT_PUBLIC_API_URL=<AZURE_API_URL>
+NEXT_PUBLIC_SUBSCRIPTION_KEY=<SUBSCRIPTION_KEY>
 ```
 
-### Instalar Dependencias
+### Install Dependencies
 ```bash
 pnpm install
 ```
 
-### Ejecutar en Desarrollo
+### Run in Development Mode
 ```bash
 pnpm run dev
 ```
-Acceder a la aplicación en `http://localhost:3000`
+Access the application at `http://localhost:3000`
 
-### Desplegar en Vercel
+### Deploy to Vercel
 ```bash
 vercel
 ```
 
-## Contribución
-Si deseas contribuir, sigue estos pasos:
-1. **Fork** el repositorio
-2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`)
-3. Realiza los cambios y confirma los commits (`git commit -m "Agrega nueva funcionalidad"`)
-4. Sube la rama (`git push origin feature/nueva-funcionalidad`)
-5. Abre un **Pull Request** en GitHub
+## Contribution
+If you want to contribute, follow these steps:
+1. **Fork** the repository.
+2. Create a new branch (`git checkout -b feature/new-feature`).
+3. Make changes and commit them (`git commit -m "Add new feature"`).
+4. Push the branch (`git push origin feature/new-feature`).
+5. Open a **Pull Request** on GitHub.
 
-## Licencia
-Este proyecto está bajo la licencia **MIT**.
-
+## License
+This project is licensed under the [**MIT**](/LICENSE) license.
