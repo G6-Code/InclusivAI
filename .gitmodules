@@ -1,0 +1,3 @@
+[submodule "inclusivai-assistant"]
+	path = inclusivai-assistant
+	url = https://github.com/FreddyPinto/inclusivai-assistant-.git
