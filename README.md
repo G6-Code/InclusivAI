@@ -271,3 +271,11 @@ If you want to contribute, follow these steps:
 
 ## License
 This project is licensed under the [**MIT**](/LICENSE) license.
+
+## Authors
+
+- [Gaby Mora](https://github.com/gabybot)
+- [Freddy Pinto](https://www.github.com/FreddyPinto)
+- [Hazel Tellez](https://github.com/HazelAmaT)
+- [Akatzin Baldovinos](https://github.com/AkatzinBH)
+- [Emmanuel Franco](https://github.com/cefd-escolar)
